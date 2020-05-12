@@ -115,7 +115,7 @@ def main():
             elif cactus_fruit not in inventory:
                 print('Fight')
                 enter()
-            if choice.UPPER() == 'FIGHT':
+            if choice.upper() == 'FIGHT':
                 health += -1
                 print('You punch the bird but hurt your hand in the process \n'
                       'you grab the key from the bird')
@@ -124,7 +124,7 @@ def main():
                 items_grabbed.append(key)
 
 
-            if choice.UPPER() == 'GIVE FRUIT':
+            if choice.upper() == 'GIVE FRUIT':
                 # Checking for the cactus fruit in inventory
                 if 'Cactus Fruit' in inventory:
                     print('The bird eats the fruit and you take the key from the bird')
