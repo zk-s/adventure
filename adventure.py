@@ -15,8 +15,7 @@ def main():
             print(line)
             print(player.inventory)
             print(line)
-    player = Player('Zack', 5, '')
-    player.inventory = []
+    player = Player('Zack', 5, [])
 
     # list to put items into. this is used to check if a player has already done an action.
     # Such as picking fruit from a cactus and not reprinting the cactus with fruit.
@@ -77,13 +76,13 @@ def main():
         'inventory': player.inventory
     }
     # Function used to take in the players choice and give them the option to check
-    # health and inventory instead of repasting code. Not happy with the global command.
+    # health and inventory instead of repasting code. 
 
     def enter():
-        global choice
         choice = input('>')
         if choice.upper() == 'HELP':
             help()
+        return choice
 
     # A function meant for the player to be able to check there inventory or health
     # at anytime.
@@ -109,7 +108,7 @@ def main():
     def desert():
         print("You are in a desert. \nWhere do you want to go?")
         print("[Cactus/Vulture]")
-        enter()
+        choice = enter()
         if choice.upper() == 'HELP':
             desert()
         elif choice.upper() == 'CACTUS':
@@ -129,7 +128,7 @@ def main():
             print(cactus_with_fruit)
             print("The cactus is tall with fruit blooming! Do you pick up the fruit?")
             print('[Yes/No]')
-            enter()
+            choice = enter()
             if choice.upper() == 'YES':
                 print("You pick up the fruit!")
                 player.inventory.append(cactus_fruit)
@@ -142,7 +141,7 @@ def main():
             print(cactus_without_fruit)
             print("The cactus has no more fruit on it")
         print("Where do you want to go? \n[Desert/Vulture]")
-        enter()
+        choice = enter()
         if choice.upper() == 'DESERT':
             desert()
         elif choice.upper() == 'VULTURE':
@@ -159,7 +158,7 @@ def main():
         Player.show_health(player)
         print('Where do you wish to go now?')
         print('[House/Desert]')
-        enter()
+        choice = enter()
         if choice.upper() == 'HOUSE':
             house()
         elif choice.upper() == 'DESERT':
@@ -174,10 +173,10 @@ def main():
         # Checking for cactus fruit in inventory
         if cactus_fruit in player.inventory:
             print('[Fight/Give fruit]')
-            enter()
+            choice = enter()
         elif cactus_fruit not in player.inventory:
             print('[Fight]')
-            enter()
+            choice = enter()
         # Checking choice
         if choice.upper() == 'FIGHT':
             player.health += -1
@@ -210,7 +209,7 @@ def main():
         print("You walk up the house and find a locked door")
         if key in player.inventory:
             print('[Use Key]')
-            enter()
+            choice = enter()
             if choice.upper() in house_options:
                 player.inventory.remove(key)
                 inside_house()
@@ -220,7 +219,7 @@ def main():
 
     def inside_house():
         print("You are inside the house")
-        enter()
+        choice = enter()
     lb()
     print("** WELCOME TO ADVENTURE **")
     lb()
